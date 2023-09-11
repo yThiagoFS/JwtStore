@@ -1,0 +1,12 @@
+D:\Projetos\balta\JwtStore\Jwt.Core\bin\Debug\net7.0\Jwt.Core.deps.json
+D:\Projetos\balta\JwtStore\Jwt.Core\bin\Debug\net7.0\Jwt.Core.dll
+D:\Projetos\balta\JwtStore\Jwt.Core\bin\Debug\net7.0\Jwt.Core.pdb
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\Jwt.Core.csproj.AssemblyReference.cache
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\Jwt.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\Jwt.Core.AssemblyInfoInputs.cache
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\Jwt.Core.AssemblyInfo.cs
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\Jwt.Core.csproj.CoreCompileInputs.cache
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\Jwt.Core.dll
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\refint\Jwt.Core.dll
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\Jwt.Core.pdb
+D:\Projetos\balta\JwtStore\Jwt.Core\obj\Debug\net7.0\ref\Jwt.Core.dll
