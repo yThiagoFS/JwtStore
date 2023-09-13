@@ -20,7 +20,7 @@ namespace Jwt.Core.Contexts.SharedContext.ValueObjects
 
             if (ExpiresAt < DateTime.UtcNow) throw new VerificationException("This code has already expired");
 
-            if (!string.Equals(code.Trim(), Code.Trim(), StringComparison.CurrentCultureIgnoreCase))throw new VerificationException("The code informed is not correct.");
+            if (!string.Equals(code.Trim(), Code.Trim(), StringComparison.CurrentCultureIgnoreCase)) throw new VerificationException("The code informed is not correct.");
 
             ExpiresAt = null;
             VerifiedAt = DateTime.UtcNow;

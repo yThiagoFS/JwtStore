@@ -28,9 +28,9 @@ namespace Jwt.Core.Contexts.SharedContext.ValueObjects
 
         public override string ToString() => Address;
 
-        private void IsValidEmail(string address)
+        private static void IsValidEmail(string address)
         {
-            if (string.IsNullOrEmpty(address)) throw new EmailException("E-mail cannot be null");
+            if (string.IsNullOrEmpty(address)) throw new EmailException("E-mail cannot be null.");
 
             if (address.Length < 5) throw new EmailException("E-mail cannot contain less than five characters.");
 

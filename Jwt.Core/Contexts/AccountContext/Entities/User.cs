@@ -14,6 +14,15 @@ namespace Jwt.Core.Contexts.AccountContext.Entities
             Password = new Password(password);
         }
 
+        public User(string name
+           ,Email emaill
+           ,Password password)
+        {
+            Name = name;
+            Email = emaill;
+            Password = password;
+        }
+
         public string Name { get; private set; } = string.Empty;
 
         public Email Email { get; private set; } = null!;
@@ -25,10 +34,9 @@ namespace Jwt.Core.Contexts.AccountContext.Entities
         public void UpdatePassword(string plainTextPassword, string code)
         {
             if (!string.Equals(code.Trim(), Password.ResetCode.Trim(), StringComparison.CurrentCultureIgnoreCase))
-                throw new Exception("Restoration code is invalid");
+                throw new Exception("Restoration code is invalid.");
 
-            var password = new Password(plainTextPassword);
-            Password = password;
+            Password = new Password(plainTextPassword);
         }
 
         public void UpdateEmail(Email email) => Email = email;
