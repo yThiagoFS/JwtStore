@@ -1,4 +1,6 @@
 ﻿using Jwt.Core;
+using Jwt.Core.Contexts.AccountContext.UseCases.Create.Contracts;
+using Jwt.Infra.Contexts.AccountContexts.UseCases.Create;
 using Jwt.Infra.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,18 @@ namespace Jwt.Api.Extensions
 
             Configuration.Secrets.PasswordSaltKey
                 = GetSecretsValue(builder, "PasswordSaltKey")!;
+
+            Configuration.SmtpConfig.Port
+                = GetSmtpValues<int>(builder, "Port");
+
+            Configuration.SmtpConfig.ApiKey
+                = GetSmtpValues<string>(builder, "ApiKey");
+
+            Configuration.SmtpConfig.Server
+                = GetSmtpValues<string>(builder, "Server");
+
+            Configuration.SmtpConfig.SenderEmail
+                = GetSmtpValues<string>(builder, "SenderEmail");
         }
 
         public static void AddDatabase(this WebApplicationBuilder builder)
@@ -55,9 +69,18 @@ namespace Jwt.Api.Extensions
             builder.Services.AddAuthorization();
         }
 
+        public static void RegistrateServices(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddScoped<IRepository, Repository>();
+            builder.Services.AddScoped<IService, Service>();
+        }
+
         private static string GetSecretsValue(
             WebApplicationBuilder builder,
             string secretName)
                 => builder.Configuration.GetSection("Secrets").GetValue<string>(secretName)!;
+
+        private static T GetSmtpValues<T>(WebApplicationBuilder builder, string secretName)
+            => builder.Configuration.GetSection("SmtpConfiguration").GetValue<T>(secretName)!;
     }
 }

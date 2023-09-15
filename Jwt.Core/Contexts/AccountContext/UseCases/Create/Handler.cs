@@ -62,7 +62,8 @@ namespace Jwt.Core.Contexts.AccountContext.UseCases.Create
                 var exists = await _repository.AnyAsync(request.Email, cancellationToken);
                 if (exists)
                     return new Response("This is already in use.", 400);
-            }catch
+            }
+            catch
             {
                 return new Response("Failed request to verify the email.", 400);
             }
