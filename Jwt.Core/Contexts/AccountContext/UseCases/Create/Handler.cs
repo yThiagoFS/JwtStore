@@ -1,10 +1,11 @@
 ﻿using Jwt.Core.Contexts.AccountContext.Entities;
 using Jwt.Core.Contexts.AccountContext.UseCases.Create.Contracts;
 using Jwt.Core.Contexts.SharedContext.ValueObjects;
+using MediatR;
 
 namespace Jwt.Core.Contexts.AccountContext.UseCases.Create
 {
-    public class Handler
+    public class Handler : IRequestHandler<Request, Response>
     {
         private readonly IRepository _repository;
         private readonly IService _service;

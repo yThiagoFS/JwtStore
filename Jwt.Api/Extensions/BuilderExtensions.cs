@@ -69,10 +69,9 @@ namespace Jwt.Api.Extensions
             builder.Services.AddAuthorization();
         }
 
-        public static void RegistrateServices(this WebApplicationBuilder builder)
+        public static void AddMediatR(this WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<IRepository, Repository>();
-            builder.Services.AddScoped<IService, Service>();
+            builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Configuration).Assembly));
         }
 
         private static string GetSecretsValue(
