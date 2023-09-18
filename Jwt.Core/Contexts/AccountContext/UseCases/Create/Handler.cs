@@ -62,11 +62,11 @@ namespace Jwt.Core.Contexts.AccountContext.UseCases.Create
             {
                 var exists = await _repository.AnyAsync(request.Email, cancellationToken);
                 if (exists)
-                    return new Response("This is already in use.", 400);
+                    return new Response("This is email already in use.", 400);
             }
             catch
             {
-                return new Response("Failed request to verify the email.", 400);
+                return new Response("Failed request to verify the email.", 500);
             }
 
             #endregion
@@ -94,11 +94,9 @@ namespace Jwt.Core.Contexts.AccountContext.UseCases.Create
             {
                 //TODO: Criar ação compensatória
             }
-
-            return new Response("Account created", new ResponseData(user.Id, user.Name, user.Email));
-
             #endregion
 
+            return new Response("Account created", new ResponseData(user.Id, user.Name, user.Email));
         }
 
     }

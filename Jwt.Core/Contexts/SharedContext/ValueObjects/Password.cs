@@ -93,5 +93,7 @@ namespace Jwt.Core.Contexts.SharedContext.ValueObjects
 
             return keyToCheck.SequenceEqual(key);
         }
+
+        public bool Challenge(string password) => Verify(Hash!, password);
     }
 }

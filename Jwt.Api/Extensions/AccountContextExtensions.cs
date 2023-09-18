@@ -17,6 +17,14 @@ namespace Jwt.Api.Extensions
                 ,Infra.Contexts.AccountContexts.UseCases.Create.Service>();
 
             #endregion
+
+            #region Authenticate
+
+            builder.Services.AddTransient<
+                Core.Contexts.AccountContext.UseCases.Authenticate.Contracts.IRepository
+                , Infra.Contexts.AccountContexts.UseCases.Authenticate.Repository>();
+
+            #endregion
         }
 
         public static void MapAccountEndpoints(this WebApplication app)
@@ -32,7 +40,24 @@ namespace Jwt.Api.Extensions
                 var result = await handler.Handle(request, new CancellationToken());
 
                 return result.IsSuccess
-                    ? Results.Created("", result)
+                    ? Results.Created($"api/v1/users/{result.Data?.Id}", result)
+                    : Results.Json(result, statusCode: result.Status);
+            });
+
+            #endregion
+
+            #region Authenticate
+
+            app.MapPost("api/v1/authenticate", async (
+                Core.Contexts.AccountContext.UseCases.Authenticate.Request request
+                , IRequestHandler<
+                    Core.Contexts.AccountContext.UseCases.Authenticate.Request
+                    , Core.Contexts.AccountContext.UseCases.Authenticate.Response> handler) =>
+            {
+                var result = await handler.Handle(request, new CancellationToken());
+
+                return result.IsSuccess
+                    ? Results.Ok(result)
                     : Results.Json(result, statusCode: result.Status);
             });
 

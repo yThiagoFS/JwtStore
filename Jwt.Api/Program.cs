@@ -1,6 +1,4 @@
 using Jwt.Api.Extensions;
-using Jwt.Core.Contexts.AccountContext.UseCases.Create;
-using Jwt.Core.Contexts.AccountContext.UseCases.Create.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 

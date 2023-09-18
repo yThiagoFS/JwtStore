@@ -15,8 +15,8 @@ namespace Jwt.Core.Contexts.AccountContext.Entities
         }
 
         public User(string name
-           ,Email emaill
-           ,Password password)
+           , Email emaill
+           , Password password)
         {
             Name = name;
             Email = emaill;
@@ -42,5 +42,7 @@ namespace Jwt.Core.Contexts.AccountContext.Entities
         public void UpdateEmail(Email email) => Email = email;
 
         public void ChangePassword(string plainTextPassword) => Password = new(plainTextPassword);
+
+  
     }
 }
