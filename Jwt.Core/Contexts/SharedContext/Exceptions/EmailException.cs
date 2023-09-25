@@ -2,9 +2,9 @@
 {
     public  class EmailException : Exception
     {
-        private const string DefaultErrorMessage = "Invalid E-mail";
+        private const string DEFAULT_ERROR_MESSAGE = "Invalid E-mail";
 
-        public EmailException(string message = DefaultErrorMessage)
+        public EmailException(string message = DEFAULT_ERROR_MESSAGE)
             : base(message)
         {
         }

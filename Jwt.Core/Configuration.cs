@@ -5,6 +5,7 @@
         public static SecretsConfiguration Secrets { get; set; } = new();
         public static DatabaseConfiguration Database { get; set; } = new();
         public static SmtpConfiguration SmtpConfig { get; set; } = new();
+        public static RabbitMQConfiguration RabbitMQConfig { get; set; } = new();
 
 
         public class DatabaseConfiguration
@@ -30,6 +31,11 @@
             public string Server { get; set; } = string.Empty;
 
             public string SenderEmail { get; set; } = string.Empty;
+        }
+
+        public class RabbitMQConfiguration
+        {
+            public string HostName { get; set; } = string.Empty;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Jwt.Core;
 using Jwt.Core.Contexts.AccountContext.UseCases.Create.Contracts;
 using Jwt.Infra.Contexts.AccountContexts.UseCases.Create;
+using Jwt.Infra.Contexts.SharedContexts.Services;
+using Jwt.Infra.Contexts.SharedContexts.Services.Contracts;
 using Jwt.Infra.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +38,9 @@ namespace Jwt.Api.Extensions
 
             Configuration.SmtpConfig.SenderEmail
                 = GetSmtpValues<string>(builder, "SenderEmail");
+
+            Configuration.RabbitMQConfig.HostName
+                = builder.Configuration.GetSection("RabbitMQ").GetValue<string>("HostName")!;
         }
 
         public static void AddDatabase(this WebApplicationBuilder builder)
@@ -73,6 +78,9 @@ namespace Jwt.Api.Extensions
         {
             builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Configuration).Assembly));
         }
+
+        public static void AddMessageServices(this WebApplicationBuilder builder)
+            => builder.Services.AddScoped<IMessageService, MessageService>();
 
         private static string GetSecretsValue(
             WebApplicationBuilder builder,
