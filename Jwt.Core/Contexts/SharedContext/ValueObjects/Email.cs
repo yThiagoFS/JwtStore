@@ -24,7 +24,7 @@ namespace Jwt.Core.Contexts.SharedContext.ValueObjects
 
         public static implicit operator string(Email email) => email.ToString();
 
-        public static implicit operator Email(string address) => new Email(address);
+        public static implicit operator Email(string address) => new(address);
 
         public override string ToString() => Address;
 

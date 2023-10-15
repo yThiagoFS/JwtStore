@@ -23,7 +23,7 @@ namespace Jwt.Core.Contexts.AccountContext.UseCases.Authenticate
             }
             catch
             {
-                return new Response("It wasn't possible to validate your requisition.", 500, null);
+                return new Response("It wasn't possible to validate your request.", 500, null);
             }
 
             #endregion
@@ -74,7 +74,7 @@ namespace Jwt.Core.Contexts.AccountContext.UseCases.Authenticate
                     Id = user.Id.ToString(),
                     Name = user.Name,
                     Email = user.Email,
-                    Roles = Array.Empty<string>()
+                    Roles = user.Roles.Select(x => x.Name).ToArray(),
                 };
 
                 return new Response(string.Empty, data);

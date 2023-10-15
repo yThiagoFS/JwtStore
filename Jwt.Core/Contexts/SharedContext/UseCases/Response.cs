@@ -6,7 +6,7 @@ namespace Jwt.Core.Contexts.SharedContext.UseCases
     {
         public string Message { get; set; } = string.Empty;
 
-        public int Status { get; set; } = 400;
+        public int Status { get; set; } = 200;
 
         public bool IsSuccess => Status is >= 200 and <= 299;
 

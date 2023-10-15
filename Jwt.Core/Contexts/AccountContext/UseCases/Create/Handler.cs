@@ -37,6 +37,21 @@ namespace Jwt.Core.Contexts.AccountContext.UseCases.Create
 
             #endregion
 
+            #region Verificar se o usuário existe no banco
+
+            try
+            {
+                var exists = await _repository.AnyAsync(request.Email, cancellationToken);
+                if (exists)
+                    return new Response("This is email already in use.", 400);
+            }
+            catch
+            {
+                return new Response("Failed request to verify the email.", 500);
+            }
+
+            #endregion
+
             #region Gerar objetos
 
             Email email;
@@ -52,21 +67,6 @@ namespace Jwt.Core.Contexts.AccountContext.UseCases.Create
             catch(Exception ex)
             {
                 return new Response($"{ex.Message}", 400);
-            }
-
-            #endregion
-
-            #region Verificar se o usuário existe no banco
-
-            try
-            {
-                var exists = await _repository.AnyAsync(request.Email, cancellationToken);
-                if (exists)
-                    return new Response("This is email already in use.", 400);
-            }
-            catch
-            {
-                return new Response("Failed request to verify the email.", 500);
             }
 
             #endregion

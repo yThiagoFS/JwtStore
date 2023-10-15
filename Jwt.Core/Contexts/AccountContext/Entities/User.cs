@@ -29,6 +29,8 @@ namespace Jwt.Core.Contexts.AccountContext.Entities
 
         public Password Password { get; private set; } = null!;
 
+        public List<Role> Roles { get; private set; } = new();
+
         public string Image { get; } = string.Empty;
 
         public void UpdatePassword(string plainTextPassword, string code)

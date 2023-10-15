@@ -33,7 +33,7 @@ namespace Jwt.Infra.Contexts.AccountContexts.UseCases.Create
         //TODO: Criar maneira de compensação
         public async Task SendVerificationEmailAsync(User user, CancellationToken cancellationToken)
         {
-            SendGridMessage message = new SendGridMessage();
+            SendGridMessage message = new();
 
             try
             {
@@ -49,13 +49,13 @@ namespace Jwt.Infra.Contexts.AccountContexts.UseCases.Create
 
                 var result = await _retryPolicy.ExecuteAsync(() => sendGridClient.SendEmailAsync(message));
             }
-            catch(Exception ex)
+            catch(EmailServiceException ex)
             {
                 await _messageService.SendMessageAsync<SendGridMessage>(message);
             }
         }
 
-        private string CreateEmailHtmlBody(string userName, string code)
+        private static string CreateEmailHtmlBody(string userName, string code)
             => $@"<html>
                 <body>
                     <h3>Hello {userName}, welcome to the JwtStore!</h3>

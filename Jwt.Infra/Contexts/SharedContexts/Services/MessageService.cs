@@ -27,9 +27,7 @@ namespace Jwt.Infra.Contexts.SharedContexts.Services
 
                 channel.QueueDeclare("EmailVerification", false, false, false, null);
 
-                var message = Activator.CreateInstance(typeof(T));
-
-                var messageSerialized = JsonConvert.SerializeObject(message);
+                var messageSerialized = JsonConvert.SerializeObject(value);
 
                 channel.BasicPublish(string.Empty,"EmailVerification", null, Encoding.UTF8.GetBytes(messageSerialized));
 
